@@ -1,0 +1,9 @@
+{
+  "classify": {"provider": "groq", "model": "openai/gpt-oss-20b"},
+  "doc":      {"provider": "groq", "model": "openai/gpt-oss-120b"},
+  "db":       {"provider": "groq", "model": "openai/gpt-oss-20b"},
+  "general":  {"provider": "groq", "model": "openai/gpt-oss-120b"},
+  "suggestion": {"provider": "groq", "model": "openai/gpt-oss-120b"},
+  "rewrite": {"provider": "groq", "model": "openai/gpt-oss-120b"},
+  "doc_classify": {"provider": "groq", "model": "openai/gpt-oss-20b"}
+}
