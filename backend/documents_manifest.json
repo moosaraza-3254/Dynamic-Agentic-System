@@ -1,0 +1,32 @@
+[
+  {
+    "doc_title": "financial_sample.pdf",
+    "doc_type": "financial",
+    "pages": 9,
+    "chunks_indexed": 46
+  },
+  {
+    "doc_title": "sample.pdf",
+    "doc_type": "general",
+    "pages": 4,
+    "chunks_indexed": 7
+  },
+  {
+    "doc_title": "legal_sample.pdf",
+    "doc_type": "legal",
+    "pages": 2,
+    "chunks_indexed": 10
+  },
+  {
+    "doc_title": "Dynamic Agent Orchestration _ FYP Idea 1.pdf",
+    "doc_type": "general",
+    "pages": 1,
+    "chunks_indexed": 4
+  },
+  {
+    "doc_title": "Northbridge_FC_Legal_Regulatory_Compliance_Report_2024_25.pdf",
+    "doc_type": "legal",
+    "pages": 10,
+    "chunks_indexed": 34
+  }
+]
