@@ -1,0 +1,22 @@
+[
+  {
+    "table_name": "test_data",
+    "original_filename": "test_data.csv",
+    "rows": 3,
+    "date_column": "date",
+    "value_columns": [
+      "value"
+    ],
+    "category_column": "category"
+  },
+  {
+    "table_name": "sales_data",
+    "original_filename": "sales_data.csv",
+    "rows": 5,
+    "date_column": "date",
+    "value_columns": [
+      "revenue"
+    ],
+    "category_column": "product"
+  }
+]
