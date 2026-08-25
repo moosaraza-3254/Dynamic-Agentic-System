@@ -203,6 +203,22 @@ Respond with ONLY the rewritten (or unchanged) question, nothing else."""
     rewritten = generate("rewrite", prompt).strip().strip('"')
     return rewritten if rewritten else question
 
+   
+_NO_INFO_PHRASES = [
+    "do not contain", "does not contain", "doesn't contain",
+    "do not mention", "does not mention", "doesn't mention",
+    "do not describe", "does not describe", "doesn't describe",
+    "no information regarding", "no information about",
+    "not mentioned in", "not covered in", "not addressed in",
+    "excerpts do not", "excerpt does not",
+    "cannot find", "can't find", "unable to find",
+    "does not provide", "do not provide",
+]
+
+def _answer_indicates_no_info(answer_text: str) -> bool:
+    lowered = answer_text.lower()
+    return any(phrase in lowered for phrase in _NO_INFO_PHRASES)
+
 
 def doc_node(state: GraphState) -> GraphState:
     def embed_query(text: str):
@@ -280,7 +296,20 @@ Respond with ONLY a JSON object in this exact form, no markdown fences, no extra
         answer_text = raw  # fall back to raw text so we never lose the answer itself
         cited_match = None
 
-    citation_source = cited_match if cited_match else top_match
+        citation_source = cited_match if cited_match else top_match
+
+    # If the model's own answer says it couldn't find the info, don't show a
+    # citation card — showing "evidence" next to an answer that admits it
+    # found nothing is misleading and undermines trust in citations that ARE
+    # real. Keep the honest answer text, just drop the page/screenshot.
+    if _answer_indicates_no_info(answer_text):
+        return {
+            **state,
+            "persona": persona,
+            "answer": answer_text,
+            "page_number": None,
+            "screenshot_path": None
+        }
 
     return {
         **state,
