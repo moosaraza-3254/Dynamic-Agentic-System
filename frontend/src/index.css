@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+button, a, [role="button"] {
+  cursor: pointer;
+}
+
+/* Dark theme (default) */
+:root,
+[data-theme="dark"] {
+  --canvas: #0a0e14;
+  --surface-1: #10151e;
+  --surface-2: #161c27;
+  --surface-3: #1c2330;
+  --border-quiet: #1f2733;
+  --accent: #7c6ff2;
+  --accent-dim: #7c6ff233;
+  --financial: #d9a15b;
+  --success: #4ade80;
+  --text-primary: #e4e7ec;
+  --text-secondary: #8b94a3;
+  --text-tertiary: #5a6372;
+  --error: #f2726f;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.36);
+  --shadow-glow: 0 0 0 3px var(--accent-dim);
+}
+
+/* Light theme — same roles, tuned for light-background contrast rather
+   than a naive invert (avoids muddy grays / low-contrast accent text). */
+[data-theme="light"] {
+  --canvas: #f7f8fa;
+  --surface-1: #ffffff;
+  --surface-2: #eef0f4;
+  --surface-3: #e4e7ee;
+  --border-quiet: #e0e3e9;
+  --accent: #6a5ce0;
+  --accent-dim: #6a5ce01f;
+  --financial: #b9772f;
+  --success: #16a34a;
+  --text-primary: #1a1d24;
+  --text-secondary: #565e6d;
+  --text-tertiary: #8b93a3;
+  --error: #d64550;
+
+  --shadow-sm: 0 1px 2px rgba(20, 24, 32, 0.06);
+  --shadow-md: 0 8px 24px rgba(20, 24, 32, 0.10);
+  --shadow-glow: 0 0 0 3px var(--accent-dim);
+}
+
+/* Smooth theme switch instead of an abrupt color snap */
+html {
+  transition: background-color 200ms ease-out;
+}
+body, #root, [class*="surface"] {
+  transition: background-color 200ms ease-out, border-color 200ms ease-out, color 200ms ease-out;
+}
+
+@keyframes stagger-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-stagger {
+  animation: stagger-in 0.28s ease-out both;
+}
+
+/* Subtle pulse used on the "active" progress stage dot — softer than
+   Tailwind's default animate-pulse (which swings opacity too far). */
+@keyframes soft-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+.animate-soft-pulse {
+  animation: soft-pulse 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-stagger, .animate-soft-pulse { animation: none; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

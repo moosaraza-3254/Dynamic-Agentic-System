@@ -1,0 +1,29 @@
+/* Prevents a white flash on initial load and during the landing -> app
+   transition: without this, html/body default to white until React
+   mounts and paints var(--canvas) on a component div. */
+html,
+body,
+#root {
+  background: var(--canvas);
+  min-height: 100vh;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@keyframes stagger-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-stagger {
+  animation: stagger-in 240ms ease-out both;
+}
