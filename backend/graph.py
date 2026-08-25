@@ -296,7 +296,7 @@ Respond with ONLY a JSON object in this exact form, no markdown fences, no extra
         answer_text = raw  # fall back to raw text so we never lose the answer itself
         cited_match = None
 
-        citation_source = cited_match if cited_match else top_match
+    citation_source = cited_match if cited_match else top_match
 
     # If the model's own answer says it couldn't find the info, don't show a
     # citation card — showing "evidence" next to an answer that admits it
@@ -316,7 +316,7 @@ Respond with ONLY a JSON object in this exact form, no markdown fences, no extra
         "persona": persona,
         "answer": answer_text,
         "page_number": citation_source["page_number"],
-        "screenshot_path": citation_source["screenshot_path"]
+        "screenshot_path": citation_source.get("screenshot_path")
     }
 
 
